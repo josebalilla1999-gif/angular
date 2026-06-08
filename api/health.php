@@ -1,10 +1,9 @@
 <?php
-file_put_contents("log.txt", "Llamada recibida\n", FILE_APPEND);
-header("Access-Control-Allow-Origin: http://localhost:4200");
+declare(strict_types=1);
+header("Access-Control-Allow-Origin: http://localhost");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-declare(strict_types=1);
 
 require_once __DIR__ . '/config/database.php';
 
@@ -56,8 +55,8 @@ try {
 function sendCorsHeaders(): void
 {
     $allowedOrigins = [
-        'http://localhost:4200',
-        'http://127.0.0.1:4200',
+        'http://localhost',
+        'http://127.0.0.1',
     ];
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 

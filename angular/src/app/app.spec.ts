@@ -36,7 +36,7 @@ describe('App', () => {
 });
 
 function flushDatabaseHealth(): void {
-  TestBed.inject(HttpTestingController).expectOne('/api/health.php').flush({
+  TestBed.inject(HttpTestingController).expectOne('angular/api/health.php').flush({
     status: 'ok',
     database: 'sistema_reservaciones',
     tables: 0,

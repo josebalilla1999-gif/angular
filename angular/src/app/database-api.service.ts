@@ -19,6 +19,6 @@ export class DatabaseApiService {
   private readonly http = inject(HttpClient);
 
   getHealth(): Observable<DatabaseHealthResponse> {
-    return this.http.get<DatabaseHealthResponse>('http://localhost/angular/api/health.php');
+    return this.http.get<DatabaseHealthResponse>('api/health.php');
   }
 }
