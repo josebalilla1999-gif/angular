@@ -40,12 +40,12 @@ try {
     $connection = databaseConnection();
 
     $statement = $connection->prepare(
-        'SELECT id, email, nick, password FROM usuarios WHERE email = :email LIMIT 1'
+        'SELECT id, email, nick, password_hash FROM usuarios WHERE email = :email LIMIT 1'
     );
     $statement->execute(['email' => $email]);
     $user = $statement->fetch();
 
-    if (!$user || $password !== (string) $user['password']) {
+    if (!$user || !password_verify($password, (string) $user['password_hash'])) {
         jsonResponse([
             'status' => 'error',
             'message' => 'Email o contrasena incorrectos.',
@@ -73,7 +73,9 @@ function sendCorsHeaders(): void
 {
     $allowedOrigins = [
         'http://localhost',
-        'http://127.0.0.1'
+        'http://127.0.0.1',
+        'http://localhost:4200',
+        'http://127.0.0.1:4200',
     ];
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 

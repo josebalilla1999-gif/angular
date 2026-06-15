@@ -62,13 +62,15 @@ try {
         ], 409);
     }
 
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
     $insertUser = $connection->prepare(
-        'INSERT INTO usuarios (email, nick, password) VALUES (:email, :nick, :password)'
+        'INSERT INTO usuarios (email, nick, password_hash) VALUES (:email, :nick, :password_hash)'
     );
     $insertUser->execute([
         'email' => $email,
         'nick' => $nick,
-        'password' => $password,
+        'password_hash' => $passwordHash,
     ]);
 
     jsonResponse([
@@ -92,7 +94,9 @@ function sendCorsHeaders(): void
 {
     $allowedOrigins = [
         'http://localhost',
-        'http://127.0.0.1'
+        'http://127.0.0.1',
+        'http://localhost:4200',
+        'http://127.0.0.1:4200',
     ];
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
