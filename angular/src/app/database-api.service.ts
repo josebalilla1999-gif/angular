@@ -12,6 +12,16 @@ export interface DatabaseHealthResponse {
   detail?: string;
 }
 
+export interface AuthResponse {
+  status: 'ok' | 'error';
+  message?: string;
+  user?: {
+    id: number;
+    email: string;
+    nick: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,5 +30,12 @@ export class DatabaseApiService {
 
   getHealth(): Observable<DatabaseHealthResponse> {
     return this.http.get<DatabaseHealthResponse>('api/health.php');
+  }
+  register(payload: { email: string; password: string; nick: string }): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>('api/auth/register.php', payload);
+  }
+
+  login(payload: { email: string; password: string }): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>('api/auth/login.php', payload);
   }
 }

@@ -1,5 +1,5 @@
 <h2>Log In</h2>
-<form class="example-form">
+<form class="example-form" (ngSubmit)="onSubmit()">
   <mat-form-field class="example-full-width">
     <mat-label>Email</mat-label>
     <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
@@ -22,7 +22,7 @@
   </mat-form-field>
   <section>
   <div class="example-button-row">
-    <button matButton="elevated">Enviar</button>
+    <button type="submit" matButton="elevated">Enviar</button>
   </div>
 </section>
 </form>
