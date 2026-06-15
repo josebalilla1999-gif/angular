@@ -3,10 +3,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DatabaseApiService, DatabaseHealthResponse } from './database-api.service';
+import { Login } from './login/login';
+import { Signin } from './signin/signin';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Login, Signin],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

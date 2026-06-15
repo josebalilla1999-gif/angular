@@ -5,6 +5,13 @@
   min-height: 100dvh;
 }
 
+.login-header {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 16px clamp(18px, 5vw, 56px);
+}
+
 .shell {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 249, 252, 0.98)), #f3f6f8;
