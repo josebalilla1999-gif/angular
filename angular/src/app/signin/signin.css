@@ -1,3 +1,10 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .example-form {
   min-width: 150px;
   max-width: 500px;

@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { DatabaseApiService } from '../database-api.service';
+import { Router } from "@angular/router";
 
 /**
  * @title Input with error messages
@@ -18,6 +19,8 @@ export class Login {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
   private readonly databaseApi = inject(DatabaseApiService);
+  hidePassword = true;
+  constructor(private router: Router) { }
 
   onSubmit(): void {
     if (this.emailFormControl.invalid || this.passwordFormControl.invalid) {
@@ -30,7 +33,7 @@ export class Login {
       email: this.emailFormControl.value ?? '',
       password: this.passwordFormControl.value ?? '',
     }).subscribe({
-      next: (response) => console.log(response),
+      next: (response) => {console.log(response), this.router.navigate(['/'])},
       error: (error) => console.error(error),
     });
   }

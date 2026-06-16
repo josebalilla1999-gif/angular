@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router'
 import { Login } from './login/login';
 import { Signin } from './signin/signin';
-import { App } from './app';
+import { Dashboard } from './dashboard/dashboard';
 
 export const routes: Routes = [
     {
         path: '',
-        component: App
-    },{
+        component: Dashboard
+    },
+    {
         path: 'login',
         component: Login
     },{

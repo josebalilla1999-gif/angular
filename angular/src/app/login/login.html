@@ -1,28 +1,33 @@
-<h2>Log In</h2>
 <form class="example-form" (ngSubmit)="onSubmit()">
+  <h2>Log In</h2>
   <mat-form-field class="example-full-width">
     <mat-label>Email</mat-label>
     <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
     @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
+    <mat-error>Please enter a valid email address</mat-error>
     }
     @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
+    <mat-error>Email is <strong>required</strong></mat-error>
     }
   </mat-form-field>
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
-    <input type="password" matInput [formControl]="passwordFormControl" placeholder="Use caps, letters, numbers and symbols">
+    <input matInput [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordFormControl" />
+    <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+      <span class="material-icons">
+        {{ hidePassword ? 'visibility_off' : 'visibility' }}
+      </span>
+    </button>
     @if (passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')) {
-      <mat-error>Please enter a valid password</mat-error>
+    <mat-error>Please enter a valid password</mat-error>
     }
     @if (passwordFormControl.hasError('required')) {
-      <mat-error>Password is <strong>required</strong></mat-error>
+    <mat-error>Password is <strong>required</strong></mat-error>
     }
   </mat-form-field>
   <section>
-  <div class="example-button-row">
-    <button type="submit" matButton="elevated">Enviar</button>
-  </div>
-</section>
+    <div class="example-button-row">
+      <button type="submit" matButton="elevated">Enviar</button>
+    </div>
+  </section>
 </form>

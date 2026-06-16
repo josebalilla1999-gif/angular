@@ -1,5 +1,5 @@
-<h2>Sign In</h2>
 <form class="example-form" (ngSubmit)="onSubmit()">
+    <h2>Sign In</h2>
     <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
         <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
@@ -12,8 +12,13 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input type="password" matInput [formControl]="passwordFormControl"
+        <input [type]="hidePassword ? 'password' : 'text'" matInput [formControl]="passwordFormControl"
             placeholder="Use caps, letters, numbers and symbols">
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+            <span class="material-icons">
+                {{ hidePassword ? 'visibility_off' : 'visibility' }}
+            </span>
+        </button>
         @if (passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')) {
         <mat-error>Please enter a valid password</mat-error>
         }

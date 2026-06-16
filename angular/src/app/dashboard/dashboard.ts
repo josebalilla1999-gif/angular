@@ -1,16 +1,15 @@
-import { isPlatformBrowser } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, PLATFORM_ID, computed, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { DatabaseApiService, DatabaseHealthResponse } from './database-api.service';
+import { Component, computed, inject, PLATFORM_ID, signal } from '@angular/core';
+import { DatabaseApiService, DatabaseHealthResponse } from '../database-api.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
+  selector: 'app-dashboard',
+  imports: [],
+  templateUrl: './dashboard.html',
+  styleUrl: './dashboard.css',
 })
-export class App {
+export class Dashboard {
   private readonly databaseApi = inject(DatabaseApiService);
   private readonly platformId = inject(PLATFORM_ID);
 
