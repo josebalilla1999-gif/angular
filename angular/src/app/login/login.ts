@@ -33,7 +33,7 @@ export class Login {
       email: this.emailFormControl.value ?? '',
       password: this.passwordFormControl.value ?? '',
     }).subscribe({
-      next: (response) => {console.log(response), this.router.navigate(['/'])},
+      next: (response) => {console.log(response), this.router.navigate(['/profile'])},
       error: (error) => console.error(error),
     });
   }
