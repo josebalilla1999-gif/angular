@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, computed, inject, PLATFORM_ID, signal } from '@angular/core';
 import { DatabaseApiService, DatabaseHealthResponse } from '../database-api.service';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +13,10 @@ import { isPlatformBrowser } from '@angular/common';
 export class Dashboard {
   private readonly databaseApi = inject(DatabaseApiService);
   private readonly platformId = inject(PLATFORM_ID);
-
   protected readonly health = signal<DatabaseHealthResponse | null>(null);
   protected readonly error = signal<string | null>(null);
   protected readonly isLoading = signal(false);
+  private router = inject(Router);
   protected readonly isConnected = computed(() => this.health()?.status === 'ok' && !this.error());
   protected readonly statusText = computed(() => {
     if (this.isLoading()) {
@@ -70,5 +71,13 @@ export class Dashboard {
     }
 
     return error.message || 'No se pudo contactar la API PHP.';
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  goToSignin() {
+    this.router.navigate(['/signin']);
   }
 }

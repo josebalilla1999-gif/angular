@@ -1,70 +1,74 @@
 <main class="shell">
-  <header class="topbar">
-    <div>
-      <p class="eyebrow">Angular + PHP + MySQL</p>
-      <h1>Sistema de reservaciones</h1>
-    </div>
-
-    <span
-      class="status-badge"
-      [class.ok]="isConnected()"
-      [class.loading]="isLoading()"
-      [class.error]="!isConnected() && !isLoading()"
-    >
-      <span class="status-dot" aria-hidden="true"></span>
-      {{ statusText() }}
-    </span>
-  </header>
-
-  <section class="workspace" aria-labelledby="connection-title">
-    <div class="panel">
-      <div class="panel-header">
+    <header class="topbar">
         <div>
-          <p class="eyebrow">Base de datos local</p>
-          <h2 id="connection-title">sistema_reservaciones</h2>
+            <p class="eyebrow">Angular + PHP + MySQL</p>
+            <h1>Sistema de reservaciones</h1>
         </div>
+        <div class="auth-buttons">
+            <button type="button" (click)="goToLogin()">
+                Ir a Login
+            </button>
 
-        <button type="button" (click)="checkConnection()" [disabled]="isLoading()">
-          <span class="material-icons" aria-hidden="true">refresh</span>
-          Reintentar
-        </button>
-      </div>
-
-      <div class="connection-state">
-        <span class="state-dot" [class.ok]="isConnected()" aria-hidden="true"></span>
-        @if (isLoading()) {
-          Comprobando conexion con MySQL
-        } @else if (isConnected()) {
-          Conexion activa con MySQL
-        } @else {
-          No hay conexion activa
-        }
-      </div>
-
-      @if (error()) {
-        <p class="error-text">{{ error() }}</p>
-      }
-
-      <div class="metrics" aria-label="Detalles de conexion">
-        <div class="metric">
-          <span>Estado</span>
-          <strong>{{ statusText() }}</strong>
+            <button type="button" (click)="goToSignin()">
+                Ir a Signin
+            </button>
         </div>
-        <div class="metric">
-          <span>Tablas</span>
-          <strong>{{ health()?.tables ?? '...' }}</strong>
-        </div>
-        <div class="metric">
-          <span>Servidor</span>
-          <strong>{{ health()?.serverVersion ?? 'Pendiente' }}</strong>
-        </div>
-        <div class="metric">
-          <span>Ultima revision</span>
-          <strong>{{ checkedAtText() }}</strong>
-        </div>
-      </div>
+        <span class="status-badge" [class.ok]="isConnected()" [class.loading]="isLoading()"
+            [class.error]="!isConnected() && !isLoading()">
+            <span class="status-dot" aria-hidden="true"></span>
+            {{ statusText() }}
+        </span>
+    </header>
 
-      <p class="endpoint">Endpoint PHP: <code>/api/health.php</code></p>
-    </div>
-  </section>
+    <section class="workspace" aria-labelledby="connection-title">
+        <div class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Base de datos local</p>
+                    <h2 id="connection-title">sistema_reservaciones</h2>
+                </div>
+
+                <button type="button" (click)="checkConnection()" [disabled]="isLoading()">
+                    <span class="material-icons" aria-hidden="true">refresh</span>
+                    Reintentar
+                </button>
+            </div>
+
+            <div class="connection-state">
+                <span class="state-dot" [class.ok]="isConnected()" aria-hidden="true"></span>
+                @if (isLoading()) {
+                Comprobando conexion con MySQL
+                } @else if (isConnected()) {
+                Conexion activa con MySQL
+                } @else {
+                No hay conexion activa
+                }
+            </div>
+
+            @if (error()) {
+            <p class="error-text">{{ error() }}</p>
+            }
+
+            <div class="metrics" aria-label="Detalles de conexion">
+                <div class="metric">
+                    <span>Estado</span>
+                    <strong>{{ statusText() }}</strong>
+                </div>
+                <div class="metric">
+                    <span>Tablas</span>
+                    <strong>{{ health()?.tables ?? '...' }}</strong>
+                </div>
+                <div class="metric">
+                    <span>Servidor</span>
+                    <strong>{{ health()?.serverVersion ?? 'Pendiente' }}</strong>
+                </div>
+                <div class="metric">
+                    <span>Ultima revision</span>
+                    <strong>{{ checkedAtText() }}</strong>
+                </div>
+            </div>
+
+            <p class="endpoint">Endpoint PHP: <code>/api/health.php</code></p>
+        </div>
+    </section>
 </main>
