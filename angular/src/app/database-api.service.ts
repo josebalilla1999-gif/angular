@@ -19,6 +19,7 @@ export interface AuthResponse {
     id: number;
     email: string;
     nick: string;
+    rol: string;
   };
 }
 
@@ -31,7 +32,7 @@ export class DatabaseApiService {
   getHealth(): Observable<DatabaseHealthResponse> {
     return this.http.get<DatabaseHealthResponse>('api/health.php');
   }
-  register(payload: { email: string; password: string; nick: string }): Observable<AuthResponse> {
+  register(payload: { email: string; password: string; nick: string; rol: string }): Observable<AuthResponse> {
     return this.http.post<AuthResponse>('api/auth/register.php', payload);
   }
 

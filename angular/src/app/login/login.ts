@@ -33,8 +33,23 @@ export class Login {
       email: this.emailFormControl.value ?? '',
       password: this.passwordFormControl.value ?? '',
     }).subscribe({
-      next: (response) => {console.log(response), this.router.navigate(['/profile'])},
-      error: (error) => console.error(error),
-    });
+      next: (response) => {
+
+        if (response.status === 'ok' && response.user) {
+          
+          console.log(response);
+          const rol = response.user.rol;
+          if (rol === 'admin') {
+            this.router.navigate(['']);
+          } else {
+            this.router.navigate(['/profile']);
+          }
+
+        } else {
+          console.error(response.message);
+        }
+
+      }
+    })
   }
 }

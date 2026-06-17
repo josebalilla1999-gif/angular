@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $payload = readJsonBody();
 $email = trim((string) ($payload['email'] ?? ''));
 $password = (string) ($payload['password'] ?? '');
+$rol = trim((string) ($payload['rol'] ??''));
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     jsonResponse([
@@ -40,7 +41,7 @@ try {
     $connection = databaseConnection();
 
     $statement = $connection->prepare(
-        'SELECT id, email, nick, password_hash FROM usuarios WHERE email = :email LIMIT 1'
+        'SELECT id, email, nick, password_hash, rol FROM usuarios WHERE email = :email LIMIT 1'
     );
     $statement->execute(['email' => $email]);
     $user = $statement->fetch();
@@ -59,6 +60,7 @@ try {
             'id' => (int) $user['id'],
             'email' => (string) $user['email'],
             'nick' => (string) $user['nick'],
+            'rol' => (string) $user['rol'],
         ],
     ]);
 } catch (Throwable $error) {

@@ -22,6 +22,7 @@ $payload = readJsonBody();
 $email = trim((string) ($payload['email'] ?? ''));
 $password = (string) ($payload['password'] ?? '');
 $nick = trim((string) ($payload['nick'] ?? ''));
+$rol = trim((string) ($payload['rol'] ??''));
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     jsonResponse([
@@ -65,12 +66,13 @@ try {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     $insertUser = $connection->prepare(
-        'INSERT INTO usuarios (email, nick, password_hash) VALUES (:email, :nick, :password_hash)'
+        'INSERT INTO usuarios (email, nick, password_hash, rol) VALUES (:email, :nick, :password_hash, :rol)'
     );
     $insertUser->execute([
         'email' => $email,
         'nick' => $nick,
         'password_hash' => $passwordHash,
+        'rol' => $rol
     ]);
 
     jsonResponse([
