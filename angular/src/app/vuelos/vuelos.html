@@ -1,0 +1,24 @@
+<h2>Listado de vuelos</h2>
+<table class="table" id="vuelos">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Aerolínea</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Salida</th>
+            <th>Llegada</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let vuelo of vuelos">
+            <td>{{ vuelo.id }}</td>
+            <td>{{ vuelo.aerolinea }}</td>
+            <td>{{ vuelo.origen }}</td>
+            <td>{{ vuelo.destino }}</td>
+            <td>{{ vuelo.hora_salida }}</td>
+            <td>{{ vuelo.hora_llegada }}</td>
+        </tr>
+    </tbody>
+</table>

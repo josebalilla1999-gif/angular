@@ -3,6 +3,7 @@ import { Login } from './login/login';
 import { Signin } from './signin/signin';
 import { Dashboard } from './dashboard/dashboard';
 import { Profile } from './profile/profile';
+import { Vuelos } from './vuelos/vuelos';
 
 export const routes: Routes = [
     {
@@ -18,5 +19,8 @@ export const routes: Routes = [
     },{
         path: 'profile',
         component: Profile
+    },{
+        path: 'vuelos',
+        component: Vuelos
     }
 ];

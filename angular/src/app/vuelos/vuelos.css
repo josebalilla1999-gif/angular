@@ -1,0 +1,49 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Cabecera */
+thead {
+  background-color: #1e3a8a;
+  color: white;
+}
+
+th {
+  padding: 12px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Filas */
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+/* Hover bonito */
+tbody tr:hover {
+  background-color: #f3f4f6;
+  transition: background-color 0.2s ease;
+}
+
+/* Zebra stripes (alternar filas) */
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Título */
+h2 {
+  font-family: Arial, sans-serif;
+  color: #111827;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
